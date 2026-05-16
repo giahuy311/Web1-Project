@@ -250,6 +250,9 @@ async function initAuthUI(session) {
     .querySelectorAll(".isLogin")
     .forEach((item) => item.classList.toggle("hidden", !isLogin));
 
+  // CHƯA LOGIN -> dừng luôn
+  if (!session || !session.user) return;
+
   const { id, email } = session.user;
   const profile = await fetchUserProfile(id);
   document.querySelector("#crud-modal #email").value = email;
